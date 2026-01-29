@@ -24,3 +24,7 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
+
+
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Task
