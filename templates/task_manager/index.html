@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}
+  <title>Overview</title>
+{% endblock %}
 
-</body>
-</html>
+{% block content %}
+  <h1>Project Overview Page</h1>
+  <p>A task management web app for an IT team. Create tasks, assign them to team members, set deadlines and priorities, and track completion status. Built to keep your workflow clear and organized.</p>
+  <h3>Statistics:</h3>
+  <ul>
+    <li>Number of workers: {{ num_of_workers }}</li>
+    <li>Number of all tasks: {{ num_of_all_tasks }}</li>
+    <li>Number of done tasks: {{ num_of_done_tasks }}</li>
+    <li>Number of active tasks: {{ num_of_done_tasks }}</li>
+  </ul>
+{% endblock %}
