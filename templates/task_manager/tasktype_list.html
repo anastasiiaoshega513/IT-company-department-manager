@@ -5,7 +5,7 @@
   {% if tasktype_list %}
     <table class="table">
       <tr>
-        <th>ID</th>
+        <th>№</th>
         <th>Name</th>
         <th>Update</th>
         <th>Delete</th>
@@ -14,7 +14,7 @@
       {% for tasktype in tasktype_list %}
         <tr>
           <td>
-            {{ tasktype.id }}
+            {{ forloop.counter }}
           </td>
           <td>
             {{ tasktype.name }}
