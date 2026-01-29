@@ -6,8 +6,8 @@ from task_manager.models import Task, Worker
 
 def index(request: HttpRequest) -> HttpResponse:
     num_of_all_tasks = Task.objects.count()
-    num_of_done_tasks = Task.objects.filter(done=True).count()
-    num_of_active_tasks = Task.objects.filter(done=False).count()
+    num_of_done_tasks = Task.objects.filter(is_completed=True).count()
+    num_of_active_tasks = Task.objects.filter(is_completed=False).count()
     num_of_workers = Worker.objects.count()
     context = {
         "num_of_all_tasks": num_of_all_tasks,
