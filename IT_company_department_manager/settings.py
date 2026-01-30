@@ -126,6 +126,12 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+LOGIN_REDIRECT_URL = '/'
+
 AUTH_USER_MODEL = "task_manager.Worker"
 
+INTERNAL_IPS = ["127.0.0.1"]
+
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+LOGOUT_REDIRECT_URL = 'login'
