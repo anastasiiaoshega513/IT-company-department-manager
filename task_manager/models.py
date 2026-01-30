@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class TaskType(models.Model):
@@ -13,6 +14,9 @@ class Position(models.Model):
 
 class Worker(AbstractUser):
     position = models.ForeignKey(Position, on_delete=models.CASCADE, related_name="workers")
+
+    def get_absolute_url(self):
+        return reverse("task_manager:worker-detail", args=[str(self.id)])
 
 
 PRIORITY_CHOICES = [
