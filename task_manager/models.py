@@ -7,6 +7,9 @@ from django.urls import reverse
 class TaskType(models.Model):
     name = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.name
+
 
 class Position(models.Model):
     name = models.CharField(max_length=200)
@@ -20,6 +23,9 @@ class Worker(AbstractUser):
 
     def get_absolute_url(self):
         return reverse("task_manager:worker-detail", args=[str(self.id)])
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name
 
 
 PRIORITY_CHOICES = [
