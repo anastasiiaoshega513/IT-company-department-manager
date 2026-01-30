@@ -25,7 +25,7 @@ class Worker(AbstractUser):
         return reverse("task_manager:worker-detail", args=[str(self.id)])
 
     def __str__(self):
-        return self.first_name + " " + self.last_name
+        return f"{self.first_name} {self.last_name} ({self.position})"
 
 
 PRIORITY_CHOICES = [
