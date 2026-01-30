@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Worker: {{ worker.first_name }} {{ worker.last_name }}</h1>
+  <h1>Worker: {{ worker.first_name }} {{ worker.last_name }}  <a class="btn btn-info" style="float: right" href="{% url 'task_manager:worker-list' %}">All workers</a></h1>
   <p><strong>Position: </strong>{{ worker.position.name }}</p>
   <div class="ml-3">
     <h3>Active tasks</h3>

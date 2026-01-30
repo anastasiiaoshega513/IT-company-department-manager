@@ -16,4 +16,6 @@
       <p>No assignments yet.</p>
     {% endfor %}
   </div>
+  <a class="btn btn-primary" href="{% url 'task_manager:task-update' pk=task.id %}">UPDATE</a>
+  <a class="btn btn-danger" href="{% url 'task_manager:task-delete' pk=task.id %}">DELETE</a>
 {% endblock %}
