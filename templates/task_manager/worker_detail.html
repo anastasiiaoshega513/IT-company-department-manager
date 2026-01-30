@@ -7,16 +7,14 @@
     <h3>Active tasks</h3>
     {% for task in uncompleted_tasks %}
       <hr>
-      <p class="text-muted">{{ forloop.counter }}</p>
-      <p>{{ task.name }}, type: {{ task.task_type }}</p>
+      <p class="text-muted">{{ forloop.counter }}. {{ task.name }}, type: {{ task.task_type }}</p>
     {% empty %}
       <p>No tasks.</p>
     {% endfor %}
     <h3>Finished tasks</h3>
     {% for task in completed_tasks %}
       <hr>
-      <p class="text-muted">{{ forloop.counter }}</p>
-      <p>{{ task.name }}, type: {{ task.task_type }}</p>
+      <p class="text-muted">{{ forloop.counter }}. {{ task.name }}, type: {{ task.task_type }}</p>
     {% empty %}
       <p>No tasks.</p>
     {% endfor %}
