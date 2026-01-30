@@ -3,7 +3,7 @@
 {% block content %}
   <h1>Delete type of task</h1>
 
-  <p>Are you sure you want to delete the type: {{ tasktype }}?</p>
+  <p>Are you sure you want to delete the type: <b>{{ tasktype.name }}</b>?</p>
 
   <form action="" method="post">
     {% csrf_token %}
