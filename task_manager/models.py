@@ -39,7 +39,7 @@ PRIORITY_CHOICES = [
 class Task(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    deadline = models.DateTimeField()
+    deadline = models.DateField()
     is_completed = models.BooleanField(default=False)
     priority = models.CharField(
         max_length=10,
