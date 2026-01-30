@@ -4,19 +4,40 @@
 {% block content %}
   <h1>Tasks  <a class="btn btn-primary" style="float: right" href="{% url 'task_manager:task-create' %}">+ Create</a></h1>
   {% if task_list %}
-    <ol>
+    <h2>Active tasks</h2>
+    <hr>
       {% for task in task_list %}
         {% if not task.is_completed %}
-          <h2>Active tasks</h2>
-          <hr>
-          <li><a href="{{ task.get_absolute_url }}">{{ task.name }}</a> {{ task.deadline }} {{ task.priority }}</li>
-        {% else %}
-          <h2>Done tasks</h2>
-          <hr>
-          <li><a href="{{ task.get_absolute_url }}">{{ task.name }} {{ task.deadline }} {{ task.priority }}</a></li>
+          <div class="task_card">
+            <h4>
+              <a href="{{ task.get_absolute_url }}">{{ task.name }}</a><br>
+            </h4>
+            Deadline: {{ task.deadline }}<br>
+            Priority: {{ task.priority }}
+            <form method="post" action="{% url 'task_manager:task-toggle' pk=task.pk %}">
+              {% csrf_token %}
+              <button class="btn btn-success btn-sm" type="submit">Completed</button>
+            </form>
+          </div>
         {% endif %}
       {% endfor %}
-    </ol>
+    <h2>Done tasks</h2>
+    <hr>
+    {% for task in task_list %}
+      {% if task.is_completed %}
+        <div class="task_card">
+          <h4>
+            <a href="{{ task.get_absolute_url }}">{{ task.name }}</a><br>
+          </h4>
+          Deadline: {{ task.deadline }}<br>
+          Priority: {{ task.priority }}<br>
+          <form method="post" action="{% url 'task_manager:task-toggle' pk=task.pk %}">
+            {% csrf_token %}
+            <button class="btn btn-danger btn-sm" type="submit">Uncompleted</button>
+          </form>
+        </div>
+      {% endif %}
+    {% endfor %}
   {% else %}
     <h5>No tasks yet.</h5>
   {% endif %}

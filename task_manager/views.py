@@ -2,8 +2,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from task_manager.forms import WorkerCreationForm, WorkerUpdateForm, TaskCreateForm, TaskUpdateForm
@@ -25,8 +25,24 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request,"task_manager/index.html", context=context)
 
 
+@login_required
+def task_toggle(request, pk):
+    task = Task.objects.get(pk=pk)
+    if request.method == "POST":
+        task.is_completed = not task.is_completed
+        task.save(update_fields=["is_completed"])
+    return redirect(reverse("task_manager:task-list"))
+
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tasks = context["task_list"]
+        context["active_tasks"] = tasks.filter(is_completed=False)
+        context["completed_tasks"] = tasks.filter(is_completed=True)
+
+        return context
 
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
