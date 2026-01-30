@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Workers <a class="btn btn-primary" style="float: right" href="{% url 'task_manager:worker-create' %}">+ Create</a></h1>
+  {% if worker_list %}
+    <ul>
+      {% for worker in worker_list %}
+        <hr>
+        <p>Full name: <a href="{{ worker.get_absolute_url }}"><b>{{ worker.first_name }} {{ worker.last_name }}</b></a></p>
+        <p>Position: <b>{{ worker.position.name }}</b></p>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

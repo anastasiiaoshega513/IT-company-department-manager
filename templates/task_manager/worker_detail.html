@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Worker: {{ worker.first_name }} {{ worker.last_name }}</h1>
+  <p><strong>Position: </strong>{{ worker.position.name }}</p>
+  <div class="ml-3">
+    <h3>Active tasks</h3>
+    {% for task in uncompleted_tasks %}
+      <hr>
+      <p class="text-muted">{{ forloop.counter }}</p>
+      <p>{{ task.name }}, type: {{ task.task_type }}</p>
+    {% empty %}
+      <p>No tasks.</p>
+    {% endfor %}
+    <h3>Finished tasks</h3>
+    {% for task in completed_tasks %}
+      <hr>
+      <p class="text-muted">{{ forloop.counter }}</p>
+      <p>{{ task.name }}, type: {{ task.task_type }}</p>
+    {% empty %}
+      <p>No tasks.</p>
+    {% endfor %}
+  </div>
+  {% if request.user == worker or request.user.is_superuser %}
+    <a class="btn btn-primary" href="{% url 'task_manager:worker-update' pk=worker.id %}">UPDATE</a>
+    <a class="btn btn-danger" href="{% url 'task_manager:worker-delete' pk=worker.id %}">DELETE</a>
+  {% endif %}
+{% endblock %}
