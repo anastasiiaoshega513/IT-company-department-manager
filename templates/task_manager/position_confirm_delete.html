@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Delete position of worker</h1>
+
+  <p>Are you sure you want to delete the position: <b>{{ position.name }}</b>?</p>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <a href="{% url 'task_manager:position-list' %}" class="btn btn-primary">Cancel</a>
+    <input type="submit" value="Yes, delete" class="btn btn-danger" />
+  </form>
+
+{% endblock %}
