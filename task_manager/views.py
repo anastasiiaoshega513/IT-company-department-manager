@@ -19,7 +19,7 @@ def index(request: HttpRequest) -> HttpResponse:
     context = {
         "num_of_all_tasks": num_of_all_tasks,
         "num_of_done_tasks": num_of_done_tasks,
-        "num_of_unfinished_tasks": num_of_active_tasks,
+        "num_of_active_tasks": num_of_active_tasks,
         "num_of_workers": num_of_workers,
     }
     return render(request,"task_manager/index.html", context=context)
