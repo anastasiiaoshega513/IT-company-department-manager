@@ -1,21 +1,25 @@
-<ul class="sidebar-nav list-group">
+<div class="sidebar-card">
   {% if user.is_authenticated %}
-    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
-    <li class="list-group-item">
-      <form id="logout-form" method="post" action="{% url 'logout' %}">
+    <div class="sidebar-user">
+      <div class="sidebar-user__name">
+        <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a>
+      </div>
+      <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-link">Logout</button>
+        <button type="submit" class="btn btn-outline-dark mb-0 btn-sm me-2">Logout</button>
       </form>
-    </li>
+    </div>
   {% else %}
-    <li class="list-group-item"><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+    <div class="sidebar-user">
+      <a class="sidebar-link" href="{% url 'login' %}?next={{ request.path }}">Login</a>
+    </div>
   {% endif %}
 
-  <br>
-
-  <li class="list-group-item"><a href="{% url 'task_manager:index' %}">Home</a></li>
-  <li class="list-group-item"><a href="{% url 'task_manager:task-type-list' %}">Types of tasks</a></li>
-  <li class="list-group-item"><a href="{% url 'task_manager:position-list' %}">Positions of workers</a></li>
-  <li class="list-group-item"><a href="{% url 'task_manager:worker-list' %}">Workers</a></li>
-  <li class="list-group-item"><a href="{% url 'task_manager:task-list' %}">Tasks</a></li>
-</ul>
+  <div class="sidebar-section">
+    <a class="sidebar-link" href="{% url 'task_manager:index' %}">Home</a>
+    <a class="sidebar-link" href="{% url 'task_manager:task-type-list' %}">Types of tasks</a>
+    <a class="sidebar-link" href="{% url 'task_manager:position-list' %}">Positions of workers</a>
+    <a class="sidebar-link" href="{% url 'task_manager:worker-list' %}">Workers</a>
+    <a class="sidebar-link" href="{% url 'task_manager:task-list' %}">Tasks</a>
+  </div>
+</div>
