@@ -1,16 +1,50 @@
 {% extends "base.html" %}
+
 {% block title %}
   <title>Overview</title>
 {% endblock %}
 
 {% block content %}
-  <h1>Project Overview Page</h1>
-  <p>A task management web app for an IT team. Create tasks, assign them to team members, set deadlines and priorities, and track completion status. Built to keep your workflow clear and organized.</p>
-  <h3>Statistics:</h3>
-  <ul>
-    <li>Number of workers: {{ num_of_workers }}</li>
-    <li>Number of all tasks: {{ num_of_all_tasks }}</li>
-    <li>Number of done tasks: {{ num_of_done_tasks }}</li>
-    <li>Number of active tasks: {{ num_of_active_tasks }}</li>
-  </ul>
+  <div class="overview-hero">
+    <div class="overview-hero__overlay"></div>
+
+    <div class="overview-hero__content">
+      <h1 class="overview-hero__title">Project Overview</h1>
+      <p class="overview-hero__subtitle">
+        A task management web app for an IT team. Create tasks, assign them to team members,
+        set deadlines and priorities, and track completion status.
+      </p>
+
+      <div class="glass-card">
+        <h4 class="mb-3">Statistics</h4>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">{{ num_of_workers }}</div>
+            <div class="stat-label">Workers</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">{{ num_of_all_tasks }}</div>
+            <div class="stat-label">All tasks</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">{{ num_of_active_tasks }}</div>
+            <div class="stat-label">Active</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">{{ num_of_done_tasks }}</div>
+            <div class="stat-label">Done</div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <a class="btn btn-outline-info mb-0" href="{% url 'task_manager:task-list' %}">Open tasks</a>
+          <a class="btn btn-outline-secondary" style="float: right" href="{% url 'task_manager:worker-list' %}">Workers</a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

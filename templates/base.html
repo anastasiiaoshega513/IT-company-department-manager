@@ -20,11 +20,12 @@
       {% endblock %}
     </div>
     <div class="col-sm-9">
-      {% block content %}
-      {% endblock %}
-      {% block pagination %}
+      <div class="content-wrap">
+        {% block content %}{% endblock %}
+        {% block pagination %}
         {% include "includes/pagination.html" %}
-      {% endblock %}
+        {% endblock %}
+      </div>
     </div>
   </div>
 </div>

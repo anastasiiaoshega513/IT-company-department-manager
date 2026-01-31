@@ -13,3 +13,85 @@ body {
     margin: 10px 0;
     border-radius: 6px;
 }
+
+.content-wrap {
+  padding: 18px;
+}
+
+.overview-hero {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 42px 32px;
+  min-height: 70vh;
+  background-image: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d");
+  background-size: cover;
+  background-position: center;
+}
+
+.overview-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.overview-hero__content {
+  position: relative;
+  max-width: 100%;
+  color: #fff;
+}
+
+.overview-hero__title {
+  font-size: 52px;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+.overview-hero__subtitle {
+  font-size: 18px;
+  opacity: 0.92;
+  max-width: 720px;
+  margin: 0 0 18px;
+}
+
+.glass-card {
+    width: 100%;
+    margin-top: 80px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 18px;
+    padding: 20px;
+    color: #111;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+    backdrop-filter: blur(10px);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stat-label {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .overview-hero__title { font-size: 38px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
