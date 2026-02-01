@@ -1,7 +1,14 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Tasks' types<a class="btn btn-primary" style="float: right" href="{% url 'task_manager:task-type-create' %}">+ Create</a></h1>
+  <h1>Tasks' types<a class="btn btn-outline-info mb-0" style="float: right" href="{% url 'task_manager:task-type-create' %}">+ Create</a></h1>
+  <form method="get" action="" class="d-flex align-items-center my-3">
+    <div class="mb-0">
+      {{ search_form|crispy }}
+    </div>
+    <button class="btn btn-outline-info" type="submit">Search</button>
+  </form>
   {% if tasktype_list %}
     <table class="table">
       <tr>
