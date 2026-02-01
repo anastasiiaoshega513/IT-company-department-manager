@@ -152,5 +152,16 @@ body {
   border-color: #e6e8f0;
 }
 
-.sidebar-card .mb-0 .form-group { margin-bottom: 0; }
-.mb-0 .form-group { margin-bottom: 0; }
+.sidebar-card .mb-0 .form-group {
+  margin-bottom: 0;
+}
+
+.mb-0 .form-group {
+  margin-bottom: 0;
+}
+
+.page-title{
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  font-size: 42px;
+}
