@@ -4,7 +4,7 @@
   <h1 class="page-title mb-0">Delete worker</h1>
   <div class="narrow-form mt-3">
     <p>Are you sure you want to delete worker: <b>{{ worker.first_name }} {{ worker.last_name }}</b>?</p>
-    <p>Position <u>{{ worker.position }}</u></p>
+    <p>Position: <b>{{ worker.position }}</b></p>
     <form action="" method="post">
       {% csrf_token %}
       <a href="{% url 'task_manager:worker-list' %}" class="btn btn-outline-primary mb-0">Cancel</a>

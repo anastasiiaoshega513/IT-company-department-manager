@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Name: {{ task.name }}</h1>
+  <h1 class="page-title mb-0">Name: {{ task.name }}</h1>
+  <hr>
   <h4><strong>Priority: </strong>{{ task.priority }}</h4>
   <h4><strong>Deadline: </strong>{{ task.deadline }}</h4>
   <h4><strong>Type: </strong>{{ task.task_type }}</h4>
@@ -11,13 +12,13 @@
     <h3>Workers:</h3>
     {% for worker in task.assignees.all %}
       <hr>
-      <a href="{{ worker.get_absolute_url }}">{{ worker.first_name }} {{ worker.last_name }}.</a><br>
+      <a style="color: #36688c" href="{{ worker.get_absolute_url }}">{{ worker.first_name }} {{ worker.last_name }}.</a><br>
       Position <u>{{ worker.position }}</u>
     {% empty %}
       <p>No assignments yet.</p>
     {% endfor %}
   </div>
   <hr>
-  <a class="btn btn-primary" href="{% url 'task_manager:task-update' pk=task.id %}">UPDATE</a>
-  <a class="btn btn-danger" href="{% url 'task_manager:task-delete' pk=task.id %}">DELETE</a>
+  <a class="btn btn-outline-primary mb-0" href="{% url 'task_manager:task-update' pk=task.id %}">UPDATE</a>
+  <a class="btn btn-outline-danger mb-0" href="{% url 'task_manager:task-delete' pk=task.id %}">DELETE</a>
 {% endblock %}
