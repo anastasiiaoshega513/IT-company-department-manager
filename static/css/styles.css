@@ -24,7 +24,7 @@ body {
   overflow: hidden;
   padding: 42px 32px;
   min-height: 70vh;
-  background-image: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d");
+  background-image: url("static/task_manager/img/index_page.jpeg");
   background-size: cover;
   background-position: center;
 }
