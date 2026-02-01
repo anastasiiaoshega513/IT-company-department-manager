@@ -165,3 +165,7 @@ body {
   letter-spacing: -0.3px;
   font-size: 42px;
 }
+
+.narrow-form{
+  max-width: 900px;
+}
