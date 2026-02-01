@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Worker: {{ worker.first_name }} {{ worker.last_name }}  <a class="btn btn-info" style="float: right" href="{% url 'task_manager:worker-list' %}">All workers</a></h1>
-  <p><strong>Position: </strong>{{ worker.position.name }}</p>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="page-title mb-0">Worker: {{ worker.first_name }} {{ worker.last_name }}</h1>
+    <a class="btn btn-outline-info mb-0" href="{% url 'task_manager:worker-list' %}">All workers</a>
+  </div>
+  <h5><strong>Position: </strong>{{ worker.position.name }}</h5>
+  <hr>
   <div class="ml-3">
     <h3>Active tasks</h3>
     {% for task in uncompleted_tasks %}
@@ -11,6 +15,7 @@
     {% empty %}
       <p>No tasks.</p>
     {% endfor %}
+    <hr>
     <h3>Finished tasks</h3>
     {% for task in completed_tasks %}
       <hr>
@@ -20,7 +25,7 @@
     {% endfor %}
   </div>
   {% if request.user == worker or request.user.is_superuser %}
-    <a class="btn btn-primary" href="{% url 'task_manager:worker-update' pk=worker.id %}">UPDATE</a>
-    <a class="btn btn-danger" href="{% url 'task_manager:worker-delete' pk=worker.id %}">DELETE</a>
+    <a class="btn btn-outline-primary mb-0" href="{% url 'task_manager:worker-update' pk=worker.id %}">UPDATE</a>
+    <a class="btn btn-outline-danger mb-0" href="{% url 'task_manager:worker-delete' pk=worker.id %}">DELETE</a>
   {% endif %}
 {% endblock %}
