@@ -6,8 +6,14 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
-from task_manager.forms import WorkerCreationForm, WorkerUpdateForm, TaskCreateForm, TaskUpdateForm, TaskTypeSearchForm, \
-    WorkerSearchForm, PositionSearchForm, TaskSearchForm
+from task_manager.forms import (WorkerCreationForm,
+                                WorkerUpdateForm,
+                                TaskCreateForm,
+                                TaskUpdateForm,
+                                TaskTypeSearchForm,
+                                WorkerSearchForm,
+                                PositionSearchForm,
+                                TaskSearchForm)
 from task_manager.models import Task, TaskType, Position
 
 
@@ -23,7 +29,7 @@ def index(request: HttpRequest) -> HttpResponse:
         "num_of_active_tasks": num_of_active_tasks,
         "num_of_workers": num_of_workers,
     }
-    return render(request,"task_manager/index.html", context=context)
+    return render(request, "task_manager/index.html", context=context)
 
 
 @login_required
@@ -33,6 +39,7 @@ def task_toggle(request, pk):
         task.is_completed = not task.is_completed
         task.save(update_fields=["is_completed"])
     return redirect(reverse("task_manager:task-list"))
+
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
@@ -170,7 +177,9 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
         queryset = get_user_model().objects.select_related("position")
         form = WorkerSearchForm(self.request.GET)
         if form.is_valid():
-            return queryset.filter(position__name__icontains=form.cleaned_data["position"])
+            return queryset.filter(
+                position__name__icontains=form.cleaned_data["position"]
+            )
         return queryset
 
 
@@ -190,7 +199,11 @@ class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = WorkerCreationForm
 
 
-class WorkerUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+class WorkerUpdateView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    generic.UpdateView
+):
     model = get_user_model()
     form_class = WorkerUpdateForm
 
@@ -198,7 +211,12 @@ class WorkerUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateVi
         obj = self.get_object()
         return self.request.user == obj or self.request.user.is_superuser
 
-class WorkerDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+
+class WorkerDeleteView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    generic.DeleteView
+):
     model = get_user_model()
     success_url = reverse_lazy("task_manager:worker-list")
 

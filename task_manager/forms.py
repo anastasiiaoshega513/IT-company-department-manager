@@ -11,7 +11,8 @@ class WorkerCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = Worker
-        fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "position", )
+        fields = (UserCreationForm.Meta.fields
+                  + ("first_name", "last_name", "position", ))
 
 
 class WorkerUpdateForm(UserChangeForm):
@@ -30,7 +31,14 @@ class TaskCreateForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ("name", "description", "deadline", "priority", "task_type", "assignees")
+        fields = (
+            "name",
+            "description",
+            "deadline",
+            "priority",
+            "task_type",
+            "assignees"
+        )
         widgets = {
             "deadline": forms.DateInput(attrs={"type": "date"}),
         }

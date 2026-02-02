@@ -19,7 +19,11 @@ class Position(models.Model):
 
 
 class Worker(AbstractUser):
-    position = models.ForeignKey(Position, on_delete=models.CASCADE, related_name="workers")
+    position = models.ForeignKey(
+        Position,
+        on_delete=models.CASCADE,
+        related_name="workers"
+    )
 
     def get_absolute_url(self):
         return reverse("task_manager:worker-detail", args=[str(self.id)])
@@ -46,8 +50,15 @@ class Task(models.Model):
         choices=PRIORITY_CHOICES,
         default="MEDIUM",
     )
-    task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE, related_name="tasks")
-    assignees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="tasks")
+    task_type = models.ForeignKey(
+        TaskType,
+        on_delete=models.CASCADE,
+        related_name="tasks"
+    )
+    assignees = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="tasks"
+    )
 
     def get_absolute_url(self):
         return reverse("task_manager:task-detail", args=[str(self.id)])

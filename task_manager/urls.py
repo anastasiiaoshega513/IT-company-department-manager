@@ -44,5 +44,4 @@ urlpatterns = [
     path("workers/<int:pk>/delete/", WorkerDeleteView.as_view(), name="worker-delete"),
 ]
 
-
 app_name = "task_manager"
