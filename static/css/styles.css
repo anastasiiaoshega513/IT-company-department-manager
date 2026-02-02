@@ -24,7 +24,7 @@ body {
   overflow: hidden;
   padding: 42px 32px;
   min-height: 70vh;
-  background-image: url("static/task_manager/img/index_page.jpeg");
+  background-image: url("../task_manager/img/index_page.jpeg");
   background-size: cover;
   background-position: center;
 }
