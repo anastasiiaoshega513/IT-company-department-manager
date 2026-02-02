@@ -12,3 +12,5 @@ pycodestyle==2.14.0
 pyflakes==3.4.0
 setuptools==80.10.2
 sqlparse==0.5.5
+
+python-dotenv
