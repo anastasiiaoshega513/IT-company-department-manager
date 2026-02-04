@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="page-title mb-0">Task types</h1>
+    <a class="btn btn-outline-info mb-0" href="{% url 'task_manager:task-type-create' %}">+ Create</a>
+  </div>
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <form method="get" action="" class="d-flex">
+        <div class="flex-grow-1 mr-2 mb-0">
+          {{ search_form|crispy }}
+        </div>
+        <button class="btn btn-outline-info mb-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+  {% if tasktype_list %}
+    <div class="card shadow-sm">
+      <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+          <thead class="thead-light">
+            <tr>
+              <th style="width: 70px;">№</th>
+              <th>Name</th>
+              <th style="width: 120px;">Update</th>
+              <th style="width: 120px;">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for tasktype in tasktype_list %}
+              <tr>
+                <td class="text-muted">{{ forloop.counter }}</td>
+                <td class="font-weight-bold">{{ tasktype.name }}</td>
+                <td>
+                  <a class="btn btn-sm btn-outline-primary"
+                     href="{% url 'task_manager:task-type-update' pk=tasktype.id %}">
+                    Edit
+                  </a>
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-outline-danger"
+                     href="{% url 'task_manager:task-type-delete' pk=tasktype.id %}">
+                    Delete
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% else %}
+    <div class="alert alert-light border">
+      There are no types of tasks yet.
+    </div>
+  {% endif %}
+{% endblock %}

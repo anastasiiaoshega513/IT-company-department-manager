@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="page-title mb-0">Workers</h1>
+    <a class="btn btn-outline-info mb-0" href="{% url 'task_manager:worker-create' %}">+ Create</a>
+  </div>
+  <form method="get" action="" class="d-flex align-items-center my-3">
+    <div class="mb-0">
+      {{ search_form|crispy }}
+    </div>
+    <button class="btn btn-outline-info" type="submit">Search</button>
+  </form>
+  {% if worker_list %}
+    <ul>
+      {% for worker in worker_list %}
+        <hr>
+        <p>Full name: <a style="color: #36688c" href="{{ worker.get_absolute_url }}"><b>{{ worker.first_name }} {{ worker.last_name }}</b></a></p>
+        <p>Position: <b>{{ worker.position.name }}</b></p>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
