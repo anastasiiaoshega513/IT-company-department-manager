@@ -31,3 +31,8 @@ and task types, with a clean admin-style interface and search on list pages.
 ```bash
 python manage.py runserver
 ```
+
+## Test user
+
+login: alex
+password: gpbUNw4Z.3HS!mt
