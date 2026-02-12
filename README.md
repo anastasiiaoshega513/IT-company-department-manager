@@ -32,6 +32,10 @@ and task types, with a clean admin-style interface and search on list pages.
 python manage.py runserver
 ```
 
+## Link to deployed project
+
+[Project](https://it-company-department-manager-1whq.onrender.com)
+
 ## Test user
 
 login: alex
